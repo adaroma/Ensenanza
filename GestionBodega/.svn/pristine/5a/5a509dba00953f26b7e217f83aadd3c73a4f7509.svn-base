@@ -1,0 +1,90 @@
+package com.umg.gt.gestionbodega.controller;
+
+import java.sql.Connection;
+import java.util.Iterator;
+import java.util.List;
+
+import org.zkoss.zk.ui.Component;
+import org.zkoss.zul.*;
+
+import com.umg.gt.gestionbodega.dao.ProductoDAO;
+import com.umg.gt.gestionbodega.orm.ProductoORM;
+
+public class ProductoCtrl extends ControladorBase {
+	private static final long serialVersionUID = 1L;
+	private ProductoDAO dao;
+	Window wdwConfProducto;
+	
+	Listbox lbxInv;
+	
+	public void doAfterCompose(Component comp) {
+		super.doAfterCompose(comp);
+		dao = new ProductoDAO();
+		
+		Connection conn = null;
+		try{
+			conn = getConLocal();
+			
+			cargaLbxInv(conn);
+		
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			cerrarConexion(conn);
+		}
+		
+	}
+	
+	public void cargaLbxInv(Connection conn) throws Exception{
+		lbxInv.getItems().clear();
+		
+		List<ProductoORM> listaProducto = dao.getListaProducto(conn);
+		
+		Iterator<ProductoORM> iList = listaProducto.iterator();
+		ProductoORM obj;
+		Listitem item = null;
+		Listcell cell = null;
+		
+		while(iList.hasNext()){
+			obj = iList.next();
+			
+			item = new Listitem();
+			
+			cell = new Listcell("");
+			cell.setParent(item);
+			
+			cell = new Listcell(obj.getPrd_codigo_barra());
+			cell.setParent(item);
+			
+			cell = new Listcell(obj.getPrd_nombre());
+			cell.setParent(item);
+			
+			cell = new Listcell(obj.getPrd_descripcion());
+			cell.setParent(item);
+			
+			cell = new Listcell(obj.getPrd_precio());
+			cell.setParent(item);
+			
+			cell = new Listcell(obj.getPrd_user_creado());
+			cell.setParent(item);
+			
+			cell = new Listcell(obj.getPrd_fch_creado());
+			cell.setParent(item);
+			
+			item.setValue(obj);
+			item.setTooltiptext("Dé doble clic para obtener más información.");
+//			item.removeEventListener("onDoubleClick", listener);
+//			item.addEventListener("onDoubleClick", listener);
+			item.setParent(lbxInv);
+		}
+		
+	}
+	
+	public void onClick$btnAgregar(){
+		
+		
+		
+		wdwConfProducto.doHighlighted();
+	}
+
+}

@@ -1,0 +1,28 @@
+@import "zul/less/_header.less";
+ 
+@navColor:                     #FFFFFF;
+@navBorderColor:               #5687A8;
+@navBackgroundColor:           #5687A8; /* first level */
+@navHoverBackgroundColor:      #FFFFFF;
+@navSelectedColor:             #FFFFFF;
+@navSelectedBackgroundColor:   #FFFFFF;
+@navSeparatorColor:            #4C7895;
+
+.navLevel>ul {
+    .z-nav-content,
+    .z-navitem-content {
+        &:hover {
+            color: #5687A8; /* add text hover color here */
+            background: @navHoverBackgroundColor;
+        }
+        &[disabled]:hover {
+            color: @navColor;
+            background: darken(@navBackgroundColor, (@level - 1) * 5.6);
+        }
+    }
+    .z-nav-content,
+    .z-navitem-content,
+    .z-navseparator {
+        background: darken(@navBackgroundColor, (@level - 1) * 5.6);
+    }
+}

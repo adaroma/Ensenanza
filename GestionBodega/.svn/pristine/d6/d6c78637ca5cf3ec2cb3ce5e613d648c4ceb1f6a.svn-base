@@ -1,0 +1,44 @@
+package com.umg.gt.gestionbodega.controller;
+
+import org.zkoss.zk.ui.Component;
+import org.zkoss.zul.Div;
+
+public class MenuCtrl extends ControladorBase {
+	private static final long serialVersionUID = 1L;
+	Div dvInicio;
+	Div dvInv;
+	
+	public void doAfterCompose(Component comp){
+		try{
+			super.doAfterCompose(comp);
+		}catch(Exception e){
+			
+		}
+	}
+	
+	/* GOMR 10/05/2017 NAVIGATION OF A MENU */
+	
+	public void onClick$navInicio(){
+		if(dvInicio.isVisible()){
+			return;
+		}
+		allNotVisible();
+		dvInicio.setVisible(true);
+	}
+	
+	public void onClick$navOrden() {
+		if(dvInv.isVisible()){
+			return;
+		}
+		allNotVisible();
+		dvInv.setVisible(true);
+	}
+	
+	
+	private void allNotVisible(){
+		dvInicio.setVisible(false);
+		dvInv.setVisible(false);
+		
+	}
+	
+}

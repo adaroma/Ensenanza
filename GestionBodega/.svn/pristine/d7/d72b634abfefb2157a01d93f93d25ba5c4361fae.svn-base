@@ -1,0 +1,50 @@
+package com.umg.gt.gestionbodega.dao;
+
+import java.sql.Connection;
+import java.util.List;
+
+import com.umg.gt.gestionbodega.orm.UsuarioORM;
+
+public class LoginDAO extends GeneralDAO {
+	
+	public String obtieneSecuencia(Connection conn, String p_bodega) throws Exception {
+		String SQL = "select nvl(max(USU_CODIGO), 0) + 1 ";
+		SQL = SQL + "   from gb_usuario ";
+		SQL = SQL + "  where bod_codigo = " + p_bodega + " ";
+		
+		return executeQuery(conn, "obtieneSecuencia() " + SQL, SQL);
+	}
+	
+	public String encriptaPassword(Connection conn, String pass) throws Exception {
+		String SQL = "select md5hash('" + pass + "') from dual ";
+		
+		return executeQuery(conn, "encriptaPassword() " + SQL, SQL);
+	}
+	
+	public String validaAutenticacion(Connection conn, String user, String pass){
+		return "ok";
+	}
+	
+	public List<UsuarioORM> obtieneListaUsuario(Connection conn, UsuarioORM filtro) throws Exception {
+		String SQL = "select bod_codigo, "
+				+ "usu_codigo, "
+				+ "usu_id_usuario, "
+				+ "usu_nombre_usuario, "
+				+ "usu_fch_creado, "
+				+ "usu_user_creado, "
+				+ "usu_fch_modificacion, "
+				+ "usu_user_modificacion, "
+				+ "usu_tipo "
+				+ "from gb_usuario ";
+		
+		return selectStatement(conn, SQL, UsuarioORM.class, "obtieneListaUsuario() " + SQL);
+	}
+	
+	public int actualizaUsuario(Connection conn, UsuarioORM obj, String p_usuario) throws Exception {
+		String SQL = " update gbusuario "
+				+ " set usu_nombre_usuario, usu_";
+		
+		return executeUpdate(conn, "actualizaUsuario() " + SQL, SQL);
+	}
+
+}

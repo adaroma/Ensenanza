@@ -1,0 +1,55 @@
+<?page title="Gestor Bodegas" contentType="text/html;charset=UTF-8"?>
+<!-- <?link rel="shortcut icon" type="image/x-icon" href="/img/icons/logo-agenda.ico"?> -->
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/bootstrap/themes/bootstrap-${param.theme}.min.css" if="${not empty param.theme}"?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/bootstrap/themes/bootstrap-default.min.css" if="${empty param.theme}"?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/docs.css" ?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/pygments-manni.css" ?>
+<?script src="/bootstrap/v3/assets/js/html5shiv.js" if="${zk.ie < 9}" ?>
+<?script src="/bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
+<zk xmlns:h="native">
+<style src="css/menu.css" />
+	<window title="" border="none" width="100%" height="100%" id="wdwMenu"
+			apply="com.umg.gt.gestionbodega.controller.MenuCtrl">
+		<borderlayout>
+			<north size="50px" border="none" style="position:absolute; z-index:1; backgound-color:">
+				<hbox style="position:absolute; z-index:1">
+					<div sclass="header">
+						<image src="/img/mant/icono_bodega.png" width="50px" height="50px" />
+					</div>
+					<navbar orient="horizontal" >
+						<navitem label="Inicio" width="180px" selected="true" />
+						<navitem label="Control de Inventario" />
+						<navitem label="Control de Información" />
+						<navitem label="Configuración" />
+					</navbar>
+				</hbox>
+			</north>
+			<center border="none" style="background: url('img/mant/defaultdesktop.png'); background-size:100% 100%; margin-top:-1px;">
+				<div width="100%" height="100%" align="center">
+					<div id="menu_inv" sclass="menu_inv">
+						<vbox style="top:50px">
+							<panel title="Entrada de Producto" id="inv_in" class="panel-info" width="250px" height="115px">
+								<panelchildren>
+									<hbox pack="center" align="right">
+										<image src="/img/menu/configuration.png" width="55px" height="55px" />
+										<space width="10px" />
+										<label value="Description of a panel from simulation menuitem." />
+									</hbox>
+								</panelchildren>
+							</panel>
+						</vbox>
+					</div>
+					
+				</div>
+<!-- 				<navitem label="Entrada de Producto" /> -->
+<!-- 				<navitem label="Salida de Producto" /> -->
+				
+<!-- 				<navitem label="Clientes" /> -->
+<!-- 				<navitem label="Proveedores" /> -->
+<!-- 				<navitem label="Almacenes" /> -->
+<!-- 				<navitem label="Producto" /> -->
+				
+			</center>
+		</borderlayout>
+	</window>
+</zk>

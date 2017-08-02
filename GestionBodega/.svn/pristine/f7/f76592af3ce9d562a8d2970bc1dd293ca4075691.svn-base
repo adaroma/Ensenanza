@@ -1,0 +1,158 @@
+package com.umg.gt.gestionbodega.controller;
+
+import java.sql.Connection;
+import java.util.Iterator;
+import java.util.List;
+
+import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zul.*;
+
+import com.umg.gt.gestionbodega.dao.AlmacenDAO;
+import com.umg.gt.gestionbodega.dao.LoginDAO;
+import com.umg.gt.gestionbodega.orm.AlmacenORM;
+import com.umg.gt.gestionbodega.orm.UsuarioORM;
+import com.umg.gt.gestionbodega.util.Conf;
+
+public class UsuarioCtrl extends ControladorBase {
+	private static final long serialVersionUID = 1L;
+	private LoginDAO dao;
+	Window wdwUsuario;
+	Window wdwConfUsuario;
+	
+	Listbox lbxAlmacen;
+	Listbox lbxUsuario;
+
+	@Override
+	public void doAfterCompose(Component comp) {
+		super.doAfterCompose(comp);
+		dao = new LoginDAO();
+		Connection conn = null;
+		try{
+			conn = getConLocal();
+			loadLbxAlmacen(conn, null);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			cerrarConexion(conn);
+		}
+	}
+	
+	public void loadLbxAlmacen(Connection conn, AlmacenORM filtro) throws Exception {
+		lbxAlmacen.getItems().clear();
+		lbxAlmacen.setEmptyMessage("No existen almacenes creados.");
+		
+		List<AlmacenORM> lista = new AlmacenDAO().obtieneListaAlmacen(conn, filtro);
+		
+		Iterator<AlmacenORM> iList = lista.iterator();
+		
+		Listitem item;
+		Listcell cell;
+		
+		while(iList.hasNext()){
+			AlmacenORM obj = iList.next();
+			
+			item = new Listitem();
+			
+			cell = new Listcell("");
+			cell.setParent(item);
+			
+			cell = new Listcell(obj.getBod_nombre());
+			cell.setParent(item);
+			
+			item.setValue(obj);
+			item.removeEventListener("onDoubleClick", onClick_lbxAlmacen);
+			item.addEventListener("onDoubleClick", onClick_lbxAlmacen);
+			item.setParent(lbxAlmacen);
+		}
+	}
+	
+	public void loadLbxUsuario(Connection conn, UsuarioORM filtro) throws Exception {
+		lbxUsuario.getItems().clear();
+		lbxUsuario.setEmptyMessage("No existen usuarios para el almacén seleccionado.");
+		
+		List<UsuarioORM> lista = new LoginDAO().obtieneListaUsuario(conn, filtro);
+		
+		Iterator<UsuarioORM> iList = lista.iterator();
+		
+		Listitem item;
+		Listcell cell;
+		
+		while(iList.hasNext()){
+			UsuarioORM obj = iList.next();
+			
+			item = new Listitem();
+			
+			cell = new Listcell("");
+			cell.setParent(item);
+			
+			cell = new Listcell(obj.getUsu_id_usuario());
+			cell.setParent(item);
+			
+			cell = new Listcell(obj.getUsu_nombre_usuario());
+			cell.setParent(item);
+			
+			cell = new Listcell(obj.getUsu_tipo());
+			cell.setParent(item);
+			
+			cell = new Listcell(obj.getUsu_fch_creado());
+			cell.setParent(item);
+			
+			item.setValue(obj);
+			item.removeEventListener("onDoubleClick", onClick_lbxUsuario);
+			item.addEventListener("onDoubleClick", onClick_lbxUsuario);
+			item.setParent(lbxUsuario);
+		}
+	}
+	
+	public void onClick$btnAgregar() {
+		Button btnGuardar = (Button) wdwConfUsuario.getFellow("btnGuardar");
+		Textbox txtNombre = (Textbox) wdwConfUsuario.getFellow("txtNombre");
+		Textbox txtDireccion = (Textbox) wdwConfUsuario.getFellow("txtDireccion");
+		Textbox txtDescripcion = (Textbox) wdwConfUsuario.getFellow("txtDescripcion");
+		
+		txtNombre.setText("");
+		txtDireccion.setText("");
+		txtDescripcion.setText("");
+		
+		btnGuardar.removeEventListener("onClick", onClick_btnGuardar);
+		btnGuardar.addEventListener("onClick", onClick_btnGuardar);
+		wdwConfUsuario.setTitle("Nuevo Usuario");
+		wdwConfUsuario.removeAttribute(Conf.KEY_APERTURA);
+		wdwConfUsuario.setAttribute(Conf.KEY_APERTURA, Conf.KEY_NUEVO);
+		wdwConfUsuario.doHighlighted();
+	}
+	
+	EventListener<Event> onClick_btnGuardar = new EventListener<Event>() {
+		public void onEvent(Event event) {
+			
+		}
+	};
+	
+	EventListener<Event> onClick_lbxAlmacen = new EventListener<Event>() {
+		public void onEvent(Event event) {
+			Connection conn = null;
+			try{
+				conn = getConLocal();
+				AlmacenORM almacen = (AlmacenORM)lbxAlmacen.getSelectedItem().getValue();
+				UsuarioORM filtro = new UsuarioORM();
+				filtro.setBod_codigo(almacen.getBod_codigo());
+				
+				loadLbxUsuario(conn, filtro);
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				cerrarConexion(conn);
+			}
+		}
+	};
+	
+	EventListener<Event> onClick_lbxUsuario = new EventListener<Event>() {
+		public void onEvent(Event event) {
+			
+		}
+	};
+	
+}

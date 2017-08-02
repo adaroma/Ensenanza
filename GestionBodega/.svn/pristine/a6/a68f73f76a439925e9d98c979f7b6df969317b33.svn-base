@@ -1,0 +1,17 @@
+@CHARSET "ISO-8859-1";
+
+ .btn-personalized{
+    text-decoration: none;
+    padding: 4px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #0080c0;
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #0080c0;
+  }
+  .btn-personalized:hover{
+    color: #ff0000;
+    background-color: #ffffff;
+    border: 1px solid #ff0000;
+  }

@@ -1,0 +1,31 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style src="/css/comp.css" />
+	<window title="" border="none" width="100%" height="100%">
+		<toolbar>
+			<button id="btnNuevo" label="Agregar" sclass="btn-personalized" image="/img/icons/add.png" />
+			<button id="btnFiltro" label="Filtrar" sclass="btn-personalized" image="/img/icons/buscar.png" />
+			<button id="btnExportar" label="Exportar" sclass="btn-personalized" image="/img/icons/excel.png" />
+		</toolbar>
+		<tabbox>
+			<tabs>
+				<tab id="tabEntrada" height="0px" />
+				<tab id="tabSalida" height="0px" />
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<listbox id="lbxEntrada" width="100%" fixedLayout="true" hflex="min" vflex="min">
+						<listhead>
+							<listheader label="Correlativo" width="100px" />
+							<listheader label="Proveedor"  />
+							<listheader label="No. Factura" width="150px" align="center" />
+							<listheader label="Serie" width="100px" align="center" />
+							<listheader label="Fecha" width="200px" align="center" />
+							<listheader label="Monto Total" width="150px" align="right" />
+						</listhead>
+					</listbox>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+	</window>
+</zk>

@@ -1,0 +1,69 @@
+<?page title="Gestor Bodegas" contentType="text/html;charset=UTF-8"?>
+<!-- <?link rel="shortcut icon" type="image/x-icon" href="/img/icons/logo-agenda.ico"?> -->
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/bootstrap/themes/bootstrap-${param.theme}.min.css" if="${not empty param.theme}"?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/bootstrap/themes/bootstrap-default.min.css" if="${empty param.theme}"?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/docs.css" ?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/pygments-manni.css" ?>
+<?script src="/bootstrap/v3/assets/js/html5shiv.js" if="${zk.ie < 9}" ?>
+<?script src="/bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
+<zk xmlns:h="native">
+<style src="css/menu.css" />
+	<window title="" border="none" width="100%" height="100%" id="wdwMenu"
+			apply="com.umg.gt.gestionbodega.controller.MenuCtrl">
+		<borderlayout>
+			<north size="50px" border="none" style="backgound-color:#000">
+				<hbox>
+					<div sclass="header">
+						<image src="/img/mant/icono_bodega.png" width="50px" height="50px" />
+					</div>
+					<navbar orient="horizontal" >
+						<navitem label="Inicio" width="180px" selected="true" />
+						<navitem label="Ordenes de Trabajo" />
+						<navitem label="Control de Inventario" />
+						<navitem label="Configuración" />
+					</navbar>
+				</hbox>
+			</north>
+			<center border="none" style="background: url('img/mant/defaultdesktop.png'); background-size:100% 100%;">
+				<div width="100%" height="100%" align="center">
+					<tabbox>
+						<tabs>
+							<tab id="tabInicio" height="0px" />
+							<tab id="tabOrder" height="0px" />
+							<tab id="tabInv" height="0px" />
+							<tab id="tabConf" height="0px" />
+						</tabs>
+						<tabpanels>
+							<tabpanel>
+								<div id="menu_inv" sclass="menu_inv" height="100%">
+									<hbox>
+										<menucard title="Entrada de Producto" id="mncInvIn" image="/img/menu/configuration.png">
+											<attribute name="description">
+												Description of a text from esta mierda ajjaja.
+											</attribute>
+										</menucard>
+										<separator height="10px" />
+										<menucard title="Usuarios" id="mnc_user" image="/img/menu/configuration.png">
+											<attribute name="description">
+												Description of a text from esta mierda ajjaja.
+											</attribute>
+										</menucard>
+										<separator height="10px" />
+									</hbox>
+								</div>
+							</tabpanel>
+						</tabpanels>
+					</tabbox>
+				</div>
+<!-- 				<navitem label="Entrada de Producto" /> -->
+<!-- 				<navitem label="Salida de Producto" /> -->
+				
+<!-- 				<navitem label="Clientes" /> -->
+<!-- 				<navitem label="Proveedores" /> -->
+<!-- 				<navitem label="Almacenes" /> -->
+<!-- 				<navitem label="Producto" /> -->
+				
+			</center>
+		</borderlayout>
+	</window>
+</zk>

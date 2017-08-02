@@ -1,0 +1,16 @@
+package com.umg.gt.gestionbodega.controller;
+
+import org.zkoss.zk.ui.Component;
+
+public class MenuCtrl extends ControladorBase {
+	private static final long serialVersionUID = 1L;
+	
+	public void doAfterCompose(Component comp){
+		try{
+			super.doAfterCompose(comp);
+		}catch(Exception e){
+			
+		}
+	}
+
+}

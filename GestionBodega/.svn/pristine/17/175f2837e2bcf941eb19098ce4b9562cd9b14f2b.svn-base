@@ -1,0 +1,9 @@
+<panel title="${arg.title}" id="${arg.id}" class="panel-info" width="250px" height="115px">
+	<panelchildren>
+		<hbox pack="center" align="right">
+			<image src="${arg.image}" width="55px" height="55px" />
+			<space width="10px" />
+			<label value="${arg.description}" />
+		</hbox>
+	</panelchildren>
+</panel>

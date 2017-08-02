@@ -1,0 +1,41 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style src="/scr/comp.css" />
+	<window title="" border="normal" width="100%" height="100%" apply="org.zkoss.bind.BindComposer"
+			viewModel="@id('beanUser') @init('com.umg.gt.gestionbodega.controller.UsuarioCtrl')">
+		<toolbar>
+			<toolbarbutton id="btnAgregar" label="Agregar" image="/img/icons/add.png" sclass="btn-personalized" />
+			<toolbarbutton id="btnFiltro" label="Filtrar" image="/img/icons/buscar.png" sclass="btn-personalized" />
+			<toolbarbutton id="btnExportar" label="Exportar" image="/img/icons/excel.png" sclass="btn-personalized" />
+		</toolbar>
+		<hbox width="100%" height="100%">
+		<listbox id="lbxAlmacen" width="99%" vflex="1" checkmark="true" model="@bind(beanUser.AlmacenList)" emptyMessage="Debe crear almacenes">
+			<listhead>
+				<listheader label="" width="35px"/>
+				<listheader label="Almacen" />
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell label="" width="35px" />
+					<listcell label="@bind(each.bod_nombre)" width="35px" />
+				</listitem>
+			</template>
+		</listbox>
+		<listbox id="lbxUsuario" width="99%" vflex="1" checkmark="true" model="@bind(beanUser.UserList)" emptyMessage="Sin usuarios">
+			<listhead>
+				<listheader label="" width="35px"/>
+				<listheader label="Usuario"   width="110px" align="center"/>
+				<listheader label="Nombre Usuario"  width="120px" align="center"/>
+				<listheader label="Tipo"         	width="100px" align="center"/>
+				<listheader label="Fecha Creación"  width="90px"  align="center"/>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell label="" width="35px" />
+					<listcell label="@bind(each)" width="35px" />
+				</listitem>
+			</template>
+		</listbox>
+		</hbox>
+	</window>
+</zk>

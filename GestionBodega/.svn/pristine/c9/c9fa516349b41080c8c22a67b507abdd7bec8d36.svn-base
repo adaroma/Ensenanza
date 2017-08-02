@@ -1,0 +1,101 @@
+package com.umg.gt.gestionbodega.controller;
+
+import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.util.Clients;
+import org.zkoss.zul.Div;
+
+public class MenuCtrl extends ControladorBase {
+	private static final long serialVersionUID = 1L;
+	Div dvInicio;
+	Div dvOrden;
+	Div dvInv;
+	Div dvInfo;
+	Div dvConf;
+	
+	public void doAfterCompose(Component comp){
+		try{
+			super.doAfterCompose(comp);
+		}catch(Exception e){
+			
+		}
+		Clients.evalJavaScript("jq(\"$dvInicio\").animate({width: \"100%\"},{duration: 500})");
+		dvInicio.setWidth("100%");
+	}
+	
+	/* GOMR 10/05/2017 NAVIGATION OF A MENU */
+	
+	public void onClick$navInicio(){
+		if(dvInicio.getWidth().equals("100%")){
+			return;
+		}
+		allNotVisible();
+		mostrar("dvInicio");
+		setDimension("100%","100%",dvInicio,true);
+	}
+	
+	public void onClick$navOrden() {
+		if(dvOrden.getWidth().equals("100%")){ //si el width es diferente de 0px está activo
+			return;
+		}
+		allNotVisible();
+		mostrar("dvOrden");
+		setDimension("100%","100%",dvOrden,true);
+	}
+	
+	public void onClick$navInv() {
+		if(dvInv.getWidth().equals("100%")){ //si el width es diferente de 0px está activo
+			return;
+		}
+		allNotVisible();
+		mostrar("dvInv");
+		setDimension("100%","100%",dvInv,true);
+	}
+	
+	public void onClick$navInfo() {
+		if(dvInfo.getWidth().equals("100%")){ //si el width es diferente de 0px está activo
+			return;
+		}
+		allNotVisible();
+		mostrar("dvInfo");
+		setDimension("100%","100%",dvInfo,true);
+	}
+	
+	public void onClick$navConf() {
+		if(dvConf.getWidth().equals("100%")){ //si el width es diferente de 0px está activo
+			return;
+		}
+		allNotVisible();
+		mostrar("dvConf");
+		setDimension("100%","100%",dvConf,true);
+	}
+	
+	private void mostrar(String id){
+		Clients.evalJavaScript("jq(\"$" + id + "\").animate({width: \"100%\", height:\"100%\"},{duration: 1000})");
+	}
+	
+	private void allNotVisible(){
+		if(!dvInicio.getWidth().equals("0px")){
+			Clients.evalJavaScript("jq(\"$dvInicio\").animate({width: \"0px\", height: \"0px\"},{duration: 1000})");
+			setDimension("0px","0px",dvInicio,false);
+		}else if(!dvOrden.getWidth().equals("0px")){
+			Clients.evalJavaScript("jq(\"$dvOrden\").animate({width: \"0px\", height: \"0px\"},{duration: 1000})");
+			setDimension("0px","0px",dvOrden,false);
+		}else if(!dvInv.getWidth().equals("0px")){
+			Clients.evalJavaScript("jq(\"$dvInv\").animate({width: \"0px\", height: \"0px\"},{duration: 1000})");
+			setDimension("0px","0px",dvInv,false);
+		}else if(!dvInfo.getWidth().equals("0px")){
+			Clients.evalJavaScript("jq(\"$dvInfo\").animate({width: \"0px\", height: \"0px\"},{duration: 1000})");
+			setDimension("0px","0px",dvInfo,false);
+		}else if(!dvConf.getWidth().equals("0px")){
+			Clients.evalJavaScript("jq(\"$dvConf\").animate({width: \"0px\", height: \"0px\"},{duration: 1000})");
+			setDimension("0px","0px",dvConf,false);
+		}
+	}
+	
+	private void setDimension(String width, String height, Div comp, boolean estado){
+		comp.setWidth(width);
+		comp.setHeight(height);
+		comp.setVisible(estado);
+	}
+	
+}

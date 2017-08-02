@@ -1,0 +1,44 @@
+<?page title="Gestor Bodegas" contentType="text/html;charset=UTF-8"?>
+<!-- <?link rel="shortcut icon" type="image/x-icon" href="/img/icons/logo-agenda.ico"?> -->
+<zk xmlns:h="native">
+<style src="css/menu.css" />
+	<window title="" border="none" width="100%" height="100%" id="wdwMenu"
+			apply="com.umg.gt.gestionbodega.controller.MenuCtrl">
+		<borderlayout>
+			<west size="200px" style="background: url('img/mant/defaultdesktop.png'); background-size:100% 100%; margin-top:-1px">
+				<div>
+					<div sclass="header">
+						<image src="/img/mant/icono_bodega.png" width="80px" height="80px" />
+					</div>
+					<navbar orient="vertical" sclass="sidebar">
+						<nav sclass="nav" label="Inicio" />
+						<nav sclass="nav" label="Facturación">
+							<navitem label="Proveedores"/>
+							<navitem label="Clientes"/>
+						</nav>
+						<nav sclass="nav" label="Control de Inventario">
+							<navitem label="Entrada de Producto" />
+							<navitem label="Salida de Producto" />
+						</nav>
+						<nav sclass="nav" label="Control de Información">
+							<navitem label="Clientes" />
+							<navitem label="Proveedores" />
+							<navitem label="Bodegas" />
+							<navitem label="Producto" />
+						</nav>
+						<nav sclass="nav" label="Configuración"/>
+					</navbar>
+				</div>
+			</west>
+			<center border="none" autoscroll="true" style="background: url('img/fondos/fondoMadera.jpg'); background-size:100% 100%; margin-top:-1px">
+				<borderlayout>
+					<north size="30px">
+						
+					</north>
+					<center border="none" style="background: url('img/fondos/fondoMadera.jpg'); background-size:100% 100%; margin-top:-1px">
+					</center>
+				</borderlayout>
+			</center>
+		</borderlayout>
+	</window>
+</zk>

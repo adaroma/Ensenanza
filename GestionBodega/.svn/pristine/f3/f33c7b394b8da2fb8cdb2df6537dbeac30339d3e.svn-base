@@ -1,0 +1,12 @@
+package com.umg.gt.gestionbodega.controller;
+
+import org.zkoss.bind.annotation.*;
+
+public class UsuarioCtrl {
+	
+	@Init
+	public void init() {
+//		super.doAfterCompose(comp);
+		System.out.println("mierda");
+	}
+}

@@ -1,0 +1,24 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="native">
+<window>
+<h:div id="dv" width="100px">
+	<textbox id="hai" value="HAI"></textbox>
+</h:div>
+<button id="export" label="Click" onClick='Clients.evalJavaScript("myFunction()")'></button>
+<script type="text/javascript">
+function myFunction()
+{
+<!-- document.body.style.backgroundColor="lavender"; -->
+<!-- document.write(Date()); -->
+
+var div = document.getElementById("dv");
+
+console.log("Mierda"+ div);
+
+}
+</script>
+<!-- 	<div apply="org.zkoss.bind.BindComposer" -->
+<!--     	 viewModel="@id('vm') @init('com.umg.gt.gestionbodega.controller.ContentCtrl')"> -->
+<!--     </div> -->
+    </window>
+</zk>

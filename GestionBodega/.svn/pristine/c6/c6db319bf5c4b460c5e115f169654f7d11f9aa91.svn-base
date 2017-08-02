@@ -1,0 +1,25 @@
+package com.umg.gt.gestionbodega.util;
+
+public class Conf {
+	
+	public static final String JNDI_BODEGA = "conn_bodega";
+	
+	public static final String KEY_APERTURA = "K-AP";
+	public static final String KEY_NUEVO 	= "1";
+	public static final String KEY_EDITA 	= "2";
+	public static final String KEY_CONSULTA = "3";
+	
+	// Variable que maneja la impresion en consola de la aplicacion
+		public static final boolean console = true;
+		
+		/****
+		 * Muestra un mensaje en la consola del IDE si esta activo el parametro.
+		 * @param p_mensaje
+		 */
+		public static void mensajeConsola(String p_mensaje){
+			if(console){
+				System.out.println(p_mensaje);
+			}
+		}
+
+}

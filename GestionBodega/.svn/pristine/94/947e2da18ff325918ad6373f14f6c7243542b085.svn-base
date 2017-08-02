@@ -1,0 +1,31 @@
+package com.umg.gt.gestionbodega.dao;
+
+import java.sql.Connection;
+import java.util.List;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+
+import com.umg.gt.gestionbodega.orm.ProductoORM;
+
+public class ProductoDAO {
+	
+	public List<ProductoORM> getListaProducto(Connection conn) throws Exception{
+		String SQL = "SELECT PRD_CODIGO, ";
+		SQL = SQL + "        PRD_CODIGO_BARRA, ";
+		SQL = SQL + "        PRD_NOMBRE, ";
+		SQL = SQL + "        PRD_DESCRIPCION, ";
+		SQL = SQL + "        PRD_PRECIO, ";
+		SQL = SQL + "TO_CHAR(PRD_FCH_CREADO,'dd/MM/yyyy') AS PRD_FCH_CREADO, ";
+		SQL = SQL + "        PRD_USER_CREADO, ";
+		SQL = SQL + "TO_CHAR(PRD_FCH_MODIFICACION,'dd/MM/yyyy') AS PRD_FCH_MODIFICACION, ";
+		SQL = SQL + "        PRD_USER_MODIFICACION ";
+		SQL = SQL + "   FROM GB_PRODUCTO ";
+		
+		System.out.println("getListaProducto(): " + SQL);
+		QueryRunner qr = new QueryRunner();
+		BeanListHandler<ProductoORM> blh = new BeanListHandler<ProductoORM>(ProductoORM.class);
+		return qr.query(conn, SQL, blh);
+	}
+
+}

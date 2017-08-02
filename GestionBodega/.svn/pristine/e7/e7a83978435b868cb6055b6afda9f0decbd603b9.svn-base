@@ -1,0 +1,11 @@
+package com.umg.gt.gestionbodega.util;
+
+public class Conf {
+	
+	public static final String JNDI_BODEGA = "conn_bodega";
+	
+	public static final String KEY_NUEVO 	= "1";
+	public static final String KEY_EDITA 	= "2";
+	public static final String KEY_CONSULTA = "3";
+
+}
